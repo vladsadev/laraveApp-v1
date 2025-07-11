@@ -4,44 +4,28 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Job
+class Job extends Model
 {
     /** @use HasFactory<\Database\Factories\JobFactory> */
     use HasFactory;
 
-    public static function find(int $id)
+    protected $table = 'job_listings';
+
+
+    protected $fillable = ['name', 'Salary'];
+
+    public function employer(): BelongsTo
     {
-//        $job = Arr::first(Job::all(), fn($job) => $job['id'] === $id);
-        $job = Arr::first(static::all(), fn($job) => $job['id'] === $id);
-
-        if(!$job){
-            abort(404);
-        }
-        return $job;
-
+        return $this->belongsTo(Employer::class, 'employer_id');
     }
 
-    public static function all(): array
+    public function tags(): BelongsToMany
     {
-        return [
-            [
-                'id' => 1,
-                'name' => "Director",
-                'salary' => "20.000 USD"
-            ],
-            [
-                'id' => 2,
-                'name' => "Actor",
-                'salary' => "50.000 USD"
-            ],
-            [
-                'id' => 3,
-                'name' => "Mechanic",
-                'salary' => "90.000 USD"
-            ]
-        ];
+        return $this->belongsToMany(Tag::class);
     }
+
 
 }

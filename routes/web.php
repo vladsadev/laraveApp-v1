@@ -11,7 +11,9 @@ Route::get('/', function () {
 
 
 Route::get('/jobs', function () {
-    $jobs = Job::all();
+
+    $jobs = Job::with('employer')->get();
+
 
     return view('jobs', ['jobs' => $jobs]);
 });
@@ -19,9 +21,7 @@ Route::get('/jobs', function () {
 
 Route::get('/jobs/{id}', function ($id) {
 
-//    $jobs = Job::all();
 
-//    $job = \Illuminate\Support\Arr::first($jobs, fn($value) => $value['id'] == $id);
     $job =  Job::find($id);
 
 

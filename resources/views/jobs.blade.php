@@ -1,11 +1,20 @@
 <x-layout>
-     <x-slot:heading>Job Listing</x-slot:heading>
-<ul class="bg-red-200 w-max">
-    @foreach($jobs as $job)
-        <a href="jobs/{{$job['id']}} ">
-            <li class="" >Name:{{$job['name']}} - Salary:{{$job['salary']}}</li>
-        </a>
-    @endforeach
-</ul>
+    <x-slot:heading>
+        Job Listing
+    </x-slot:heading>
+    <div class="space-y-2">
+        <?php $i=1;?>
+        @foreach($jobs as  $job)
+            <a href="jobs/{{$job['id']}}" class="rounded-sm text-blue-500 block py-3 px-2 border border-gray-200">
+                <div class="font-semibold">
+                    {{$i++}}.- Employer: {{$job->employer->name}}
+                </div>
+                <div class="text-black">
+                    <strong>{{$job['name']}}</strong> - Salary: {{$job['Salary']}}
+                </div>
+            </a>
+        @endforeach
+
+    </div>
 
 </x-layout>

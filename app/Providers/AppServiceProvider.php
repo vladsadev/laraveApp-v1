@@ -26,6 +26,5 @@ class AppServiceProvider extends ServiceProvider
          *Aquí podemos configurar la aplicación según nos convenga */
 
         Model::preventLazyLoading();
-
     }
 }

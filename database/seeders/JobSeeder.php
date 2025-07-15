@@ -16,10 +16,10 @@ class JobSeeder extends Seeder
     {
         Job::factory()->create([
             'employer_id' => Employer::factory(),
-            'name' => fake()->jobTitle(),
+            'title' => fake()->jobTitle(),
             'salary' => '350.000 USD'
         ]);
 
-        Job::factory(100)->create();
+        Job::factory(7)->create();
     }
 }

@@ -20,10 +20,7 @@ Route::get('/contact', function () {
 Route::get('/register', [RegisteredUserController::class, 'create']);
 Route::post('/register', [RegisteredUserController::class, 'store']);
 
-/*
- * Un nombre para el controlador del Login, podría ser "LoginController".
- * Sin embargo, podemos usar el nombre de "SessionController" que es
- * bastante usado para este propósito
- */
+
 Route::get('/login', [SessionController::class, 'create']);
 Route::post('/login', [SessionController::class, 'store']);
+Route::post('/logout', [SessionController::class, 'destroy']);
